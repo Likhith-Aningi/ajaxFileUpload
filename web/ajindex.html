@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
+-->
+<html>
+    <head>
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.3.0/jquery.form.min.js" integrity="sha512-YUkaLm+KJ5lQXDBdqBqk7EVhJAdxRnVdT2vtCzwPHSweCzyMgYV/tgGF4/dCyqtCC2eCphz0lRQgatGVdfR0ww==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>-->
+        <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+        <title>Upload chey brother</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </head>
+    <body>
+        <div> Ajax Image upload</div>
+        <div class="loader center-align" style="display: none">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-red">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-yellow">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+
+                <div class="spinner-layer spinner-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            Processing please wait...
+        </div>
+        <div >
+            <form id='formm' action="Upload" method="post" enctype="multipart/form-data" >
+                <input type="file" name="img" accept="image/x-png,image/gif,image/jpeg" >
+                <br>
+                <input type="submit" value="Upload">
+            </form>
+            <h5 id='msg'></h5>
+        </div>
+        <script>
+            $(document).ready(function () {
+                console.log("it is deployed");
+                $('#formm').on('submit', function (event) {
+                    event.preventDefault();
+                    //var d = $(this).serialize();
+                    let d=new FormData(this);
+                    console.log(d);
+                    $('.loader').show();
+                    $('#formm').hide();
+                    
+                    $.ajax({
+                        url: "Upload",
+                        data: d,
+                        type: 'POST',
+                        success: function (data, textStatus, jqXHR) {
+                                console.log(data);
+                                console.log("success...");
+                                $('body').html(data);
+                                
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log("error...");
+                            $('.loader').toggle();
+                            $('body').html("<h1>internal server error</h1>");
+                        },
+                        processData: false,
+                        contentType:false
+                    });
+                });
+            });
+
+
+        </script>
+    </body>
+</html>
