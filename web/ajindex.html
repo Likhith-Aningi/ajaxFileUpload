@@ -89,13 +89,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         success: function (data, textStatus, jqXHR) {
                                 console.log(data);
                                 console.log("success...");
-                                $('body').html(data);
+                               // $('body').html(data);
+                               $('#formm').show();
+                               $('.loader').hide();
+                               $('#msg').text('successfully uploaded');
+                               $("#formm").reset();
                                 
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log("error...");
                             $('.loader').toggle();
                             $('body').html("<h1>internal server error</h1>");
+                            
                         },
                         processData: false,
                         contentType:false
