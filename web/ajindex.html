@@ -87,14 +87,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                         data: d,
                         type: 'POST',
                         success: function (data, textStatus, jqXHR) {
-                                console.log(data);
-                                console.log("success...");
-                               // $('body').html(data);
-                               $('#formm').show();
-                               $('.loader').hide();
-                               $('#msg').text('successfully uploaded');
-                               $("#formm").reset();//form reset within the same page
-                                
+                               console.log(data);
+                            console.log("success...");
+                            // $('body').html(data);
+                            $('#formm').show();
+                            $('.loader').hide();
+                            $('#msg').text('successfully uploaded');
+                            $("#formm").get(0).reset();//form reset within the same page
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
                             console.log("error...");
